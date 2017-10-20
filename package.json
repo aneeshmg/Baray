@@ -1,0 +1,14 @@
+{
+  "name": "baray",
+  "version": "1.0.0",
+  "description": "Baray - a minimilistic logger",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "winston": "^2.4.0"
+  }
+}
