@@ -36,10 +36,14 @@ const msgJson = {
     data: "something..."
 }
 
-for (let i = 0; i < 1e6; i++) {
-    loggerW.info(msg + i)
-    loggerW.error(msg + i)
-}
+// for (let i = 0; i < 1e6; i++) {
+//     logger.info(msg + i)
+// }
+// let i = 0
+// setInterval(function () {
+//     loggerW.info(msg + ++i)
+//     if (i > 1e6) process.exit(0);
+// }, 1 / 100000)
 
 
 loggerW.log(msg)
