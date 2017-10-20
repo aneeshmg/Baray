@@ -46,10 +46,10 @@ const msgJson = {
 // }, 1 / 100000)
 
 
-loggerW.log(msg)
-loggerW.info(msg)
-loggerW.warn(msg)
-loggerW.error(msg)
+// loggerW.log(msg)
+// loggerW.info(msg)
+// loggerW.warn(msg)
+// loggerW.error(msg)
 
 
 logger.log(msg)
