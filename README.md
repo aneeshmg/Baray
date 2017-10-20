@@ -1,1 +1,1 @@
-Baray - a minimilistic logger
+## Baray - a minimalistic logger
