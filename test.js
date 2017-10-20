@@ -3,7 +3,7 @@ const winston = require('winston')
 
 const logger = new baray({
     appName: "test",
-    console: true,
+    console: false,
     rotateLogs: false,
     json: true,
     path: `${__dirname}/logs`
@@ -21,6 +21,11 @@ const loggerW = new(winston.Logger)({
             name: 'error-file',
             filename: `logs/winston-error.log`,
             level: 'error'
+        }),
+        new(winston.transports.File)({
+            name: 'warn-file',
+            filename: `logs/winston-warning.log`,
+            level: 'warning'
         })
     ]
 })
@@ -31,11 +36,19 @@ const msgJson = {
     data: "something..."
 }
 
-// for (let i = 0; i < 1e6; i++)
-//     logger.info(msg)
+for (let i = 0; i < 1e6; i++) {
+    loggerW.info(msg + i)
+    loggerW.error(msg + i)
+}
 
+
+loggerW.log(msg)
 loggerW.info(msg)
+loggerW.warn(msg)
 loggerW.error(msg)
 
+
+logger.log(msg)
 logger.info(msg)
+logger.warn(msg)
 logger.error(msg)
