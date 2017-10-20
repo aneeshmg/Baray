@@ -6,9 +6,27 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Aneesh MG",
+  "license": "MIT",
   "devDependencies": {
     "winston": "^2.4.0"
-  }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aneeshmg/Baray.git"
+  },
+  "keywords": [
+    "logger",
+    "minimalistic",
+    "simple"
+  ],
+  "bugs": {
+    "url": "https://github.com/aneeshmg/Baray/issues"
+  },
+  "homepage": "https://github.com/aneeshmg/Baray#readme"
 }
