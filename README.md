@@ -1,0 +1,1 @@
+Baray - a minimilistic logger
