@@ -41,9 +41,9 @@ const msgJson = {
 // }
 // let i = 0
 // setInterval(function () {
-//     loggerW.info(msg + ++i)
+//     logger.info(msg + ++i)
 //     if (i > 1e6) process.exit(0);
-// }, 1 / 100000)
+// }, 1000)
 
 
 // loggerW.log(msg)
@@ -52,7 +52,7 @@ const msgJson = {
 // loggerW.error(msg)
 
 
-logger.log(msg)
-logger.info(msg)
-logger.warn(msg)
-logger.error(msg)
+logger.log(msgJson)
+logger.info(msgJson)
+logger.warn(msgJson)
+logger.error(msgJson)
