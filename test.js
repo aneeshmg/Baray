@@ -1,11 +1,12 @@
-const baray = require('./Baray')
+const baray = require('./lib/Baray')
 const winston = require('winston')
 
 const logger = new baray({
     appName: "test",
     console: true,
     rotateLogs: false,
-    json: true
+    json: true,
+    path: `${__dirname}/logs`
 })
 
 // For comparision purposes 
@@ -33,6 +34,7 @@ const msgJson = {
 // for (let i = 0; i < 1e6; i++)
 //     logger.info(msg)
 
+loggerW.info(msg)
 loggerW.error(msg)
 
 logger.info(msg)
