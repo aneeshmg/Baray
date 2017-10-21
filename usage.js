@@ -4,7 +4,6 @@ const winston = require('winston')
 const logger = new baray({
     appName: "test",
     console: false,
-    rotateLogs: false,
     json: true,
     path: `${__dirname}/logs`
 })
