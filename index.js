@@ -1,1 +1,1 @@
-module.exports = require('./Baray')
+module.exports = require('./lib/Baray')
