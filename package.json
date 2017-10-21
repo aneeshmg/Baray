@@ -1,6 +1,6 @@
 {
   "name": "baray",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Baray - a minimilistic logger",
   "main": "index.js",
   "scripts": {
