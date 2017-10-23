@@ -1,8 +1,8 @@
 const chai = require("chai")
 const baray = require("../lib/Baray")
-const fs = require("fs")
 const types = require("../lib/types")
 const utils = require("../lib/utils")
+const colors = require("../lib/colors")
 
 const expect = chai.expect
 
@@ -24,6 +24,9 @@ describe("Baray tests", () => {
         it("should set default json option", () => {
             expect(logger).to.haveOwnProperty("json").to.equal(true)
         })
+        it("should set default color", () => {
+            expect(logger).to.haveOwnProperty("color").to.equal(colors.white)
+        })
         it("should set default log path", () => {
             expect(logger).to.haveOwnProperty("path")
         })
@@ -35,6 +38,7 @@ describe("Baray tests", () => {
         const appName = "test"
         const _console = false // added the "_" as just 'console' is a reserved word
         const json = true
+        const color = colors.white
         const path = `${__dirname}/logs`
 
         before(() => {
@@ -42,6 +46,7 @@ describe("Baray tests", () => {
                 appName: appName,
                 console: _console,
                 json: json,
+                _color: color, //// it wouldn't work without the '_' apparantly
                 path: path
             })
         })
@@ -54,6 +59,9 @@ describe("Baray tests", () => {
         })
         it("should set json option", () => {
             expect(logger).to.haveOwnProperty("json").to.equal(json)
+        })
+        it("should set color", () => {
+            expect(logger).to.haveOwnProperty("color").to.equal(colors.white)
         })
         it("should set log path", () => {
             expect(logger).to.haveOwnProperty("path").to.equal(path)
