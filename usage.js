@@ -3,8 +3,9 @@ const winston = require('winston')
 
 const logger = new baray({
     appName: "test",
-    console: false,
+    console: true,
     json: true,
+    color: "white",
     path: `${__dirname}/logs`
 })
 
@@ -51,7 +52,7 @@ const msgJson = {
 // loggerW.error(msg)
 
 
-logger.log(msgJson)
+logger.log(msg)
 logger.info(msgJson)
 logger.warn(msgJson)
 logger.error(msgJson)
