@@ -49,4 +49,5 @@ describe("utils tests", () => {
             expect(fileStream).to.have.a.property("flags").to.equal("a")
         })
     })
+    // TODO: add test cases for _getFileContents & _dirCleanup
 })

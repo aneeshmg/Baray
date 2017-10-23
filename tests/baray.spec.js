@@ -112,18 +112,119 @@ describe("Baray tests", () => {
         })
     })
 
-    describe("should log to approriate log file in regular form (not json)", () => {
+    describe("should log in json to approriate log file when message is json", () => {
         let logger = null
-        const message = "some text message"
+        const message = {
+            data:"message",
+            code:"statusCode"
+        }
         const path = `${__dirname}/logs`
+        let infoFileContent = null
+        let warnFileContent = null
+        let errorFileContent = null
 
         before(() => {
             logger = new baray({
                 appName: "test",
-                cosole: false,
+                console: false,
+                json: true,
+                path: path
+            })
+            utils._dirCleanup(path)
+
+            logger.info(message)
+            logger.warn(message)
+            logger.error(message)
+        })
+
+        it("should generate proper info log object for json message", () => {
+            infoFileContent = JSON.parse(utils._getFileContents(path, types.INFO))
+            expect(infoFileContent).to.not.be.equal(undefined || null)
+            expect(infoFileContent.message).to.include(message)
+            expect(infoFileContent).to.haveOwnProperty("timestamp")
+            expect(infoFileContent).to.haveOwnProperty("appName").to.equal("test")
+            expect(infoFileContent).to.haveOwnProperty("type").to.equal(types.INFO)
+        })
+        it("should generate proper warning log object for json message", () => {
+            warnFileContent = JSON.parse(utils._getFileContents(path, types.WAR))
+            expect(warnFileContent).to.not.be.equal(undefined || null)
+            expect(warnFileContent.message).to.include(message)
+            expect(warnFileContent).to.haveOwnProperty("timestamp")
+            expect(warnFileContent).to.haveOwnProperty("appName").to.equal("test")
+            expect(warnFileContent).to.haveOwnProperty("type").to.equal(types.WAR)
+        })
+        it("should generate proper error log object for json message", () => {
+            errorFileContent = utils._getFileContents(path, types.ERR)
+            expect(errorFileContent).to.not.be.equal(undefined || null)
+            expect(errorFileContent).to.include(JSON.stringify(message))
+            expect(errorFileContent).to.include("timestamp")
+            expect(errorFileContent).to.include("test")
+            expect(errorFileContent).to.include(types.ERR)
+        })
+
+        after(() => {
+            utils._dirCleanup(path)
+        })
+    })
+
+    describe("should log in plain text to approriate log file when message is plain text", () => {
+        let logger = null
+        const message = "some text message"
+        const path = `${__dirname}/logs`
+        let infoFileContent = null
+        let warnFileContent = null
+        let errorFileContent = null
+
+        before(() => {
+            logger = new baray({
+                appName: "test",
+                console: false,
                 json: false,
                 path: path
             })
+            utils._dirCleanup(path)
+
+            logger.info(message)
+            logger.warn(message)
+            logger.error(message)
+        })
+
+        // TODO: add tests for non-json plain text message
+
+        after(() => {
+            utils._dirCleanup(path)
+        })
+    })
+
+    describe("should log in plain text to approriate log file when message is json", () => {
+        let logger = null
+        const message = {
+            data:"message",
+            code:"statusCode"
+        }
+        const path = `${__dirname}/logs`
+        let infoFileContent = null
+        let warnFileContent = null
+        let errorFileContent = null
+
+        before(() => {
+            logger = new baray({
+                appName: "test",
+                console: false,
+                json: false,
+                path: path
+            })
+            utils._dirCleanup(path)
+
+            logger.info(message)
+            logger.warn(message)
+            logger.error(message)
+        })
+
+        // TODO: add tests for non-json json message
+
+        after(() => {
+            utils._dirCleanup(path)
         })
     })
 })
