@@ -25,8 +25,10 @@ const logger = new Baray({
   appName: "NoName",
   console: true, 
   json: true,
+  color: "white"
   path: `${__dirname}/logs`
 })
+// Available colors - ["black, "white", "red", "green", "blue", "cyan", "magenta", "yellow"]
 ```
 ##### _OR_
 ```javascript
