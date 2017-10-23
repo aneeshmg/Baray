@@ -1,6 +1,5 @@
 const chai = require("chai")
 const expect = chai.expect
-const fs = require("fs")
 const types = require("../lib/types")
 const utils = require("../lib/utils")
 const path = `${__dirname}/logs`

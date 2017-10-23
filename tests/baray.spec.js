@@ -4,7 +4,6 @@ const fs = require("fs")
 const types = require("../lib/types")
 const utils = require("../lib/utils")
 
-const assert = chai.assert
 const expect = chai.expect
 
 describe("Baray tests", () => {
@@ -65,34 +64,62 @@ describe("Baray tests", () => {
         let logger = null
         const message = "some text message"
         const path = `${__dirname}/logs`
-        let _console = {}
-        let infoFile = null
-        let warnFile = null
-        let errorFile = null
+        let infoFileContent = null
+        let warnFileContent = null
+        let errorFileContent = null
 
         before(() => {
             logger = new baray({
                 appName: "test",
-                console: true,
+                console: false,
                 json: true,
                 path: path
             })
-            _console.stdout = process.stdout
-            _console.stderr = process.stderr
-            // TODO: pending initializations & assertions
+            let logFiles = fs.readdirSync(path)
+            if (logFiles.length > 0) {
+                for (logFile of logFiles) {
+                    if (fs.statSync(`${path}/${logFile}`).isFile())
+                        fs.unlinkSync(`${path}/${logFile}`)
+                }
+            }
+            logger.info(message)
+            logger.warn(message)
+            logger.error(message)
         })
 
-        it("should generate proper console log object", () => {
-            logger.log(message)
-        })
         it("should generate proper info log object", () => {
-            logger.info(message)
+            infoFileContent = JSON.parse(utils._getFileContents(path, types.INFO))
+            expect(infoFileContent).to.not.be.equal(undefined || null)
+            expect(infoFileContent.message).to.equal(message)
+            expect(infoFileContent).to.haveOwnProperty("timestamp")
+            expect(infoFileContent).to.haveOwnProperty("appName").to.equal("test")
+            expect(infoFileContent).to.haveOwnProperty("type").to.equal(types.INFO)
         })
         it("should generate proper warning log object", () => {
-            logger.warn(message)
+            warnFileContent = JSON.parse(utils._getFileContents(path, types.WAR))
+            expect(warnFileContent).to.not.be.equal(undefined || message)
+            expect(warnFileContent.message).to.equal(message)
+            expect(warnFileContent).to.haveOwnProperty("timestamp")
+            expect(warnFileContent).to.haveOwnProperty("appName").to.equal("test")
+            expect(warnFileContent).to.haveOwnProperty("type").to.equal(types.WAR)
         })
-        it("should generate proper error log object", () => {
-            logger.error(message)
+        it.only("should generate proper error log object", () => {
+            errorFileContent = utils._getFileContents(path, types.ERR)
+            expect(errorFileContent).to.include("Error")
+            expect(errorFileContent).to.include(message)
+            expect(errorFileContent).to.include(types.ERR)
+            expect(errorFileContent).to.include("timestamp")
+            expect(errorFileContent).to.include("appName")
+        })
+
+        after(() => {
+            let logFiles = fs.readdirSync(path)
+            if (logFiles.length > 0) {
+                for (logFile of logFiles) {
+                    if (fs.statSync(`${path}/${logFile}`).isFile())
+                        fs.unlinkSync(`${path}/${logFile}`)
+                }
+            }
         })
     })
 
