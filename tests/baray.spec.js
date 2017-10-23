@@ -61,52 +61,11 @@ describe("Baray tests", () => {
         })
     })
 
-    describe("utils & types test cases", () => {
-        describe("log types", () => {
-            it("should contain 'log' as a type", () => {
-                expect(types).to.haveOwnProperty("LOG").to.equal("log")
-            })
-            it("should contain 'info' as a type", () => {
-                expect(types).to.haveOwnProperty("INFO").to.equal("info")
-            })
-            it("should contain 'warning' as a type", () => {
-                expect(types).to.haveOwnProperty("WAR").to.equal("warning")
-            })
-            it("should contain 'error' as a type", () => {
-                expect(types).to.haveOwnProperty("ERR").to.equal("error")
-            })
-        })
-        describe("utils tests", () => {
-            describe("getFilePath tests", () => {
-                it("should return proper 'info' log file", () => {
-                    // TODO
-                })
-                it("should return proper 'warning' log file", () => {
-                    // TODO
-                })
-                it("should return proper 'error' log file", () => {
-                    // TODO
-                })
-            })
-            describe("getFile tests", () => {
-                it("should return write stream of info file", () => {
-                    // TODO
-                })
-                it("should return write stream of warning file", () => {
-                    // TODO
-                })
-                it("should return write stream of error file", () => {
-                    // TODO
-                })
-            })
-        })
-    })
-
     describe("should generate approriate log entry logging to console and file in json", () => {
         let logger = null
         const message = "some text message"
         const path = `${__dirname}/logs`
-        let _console = null
+        let _console = {}
         let infoFile = null
         let warnFile = null
         let errorFile = null
