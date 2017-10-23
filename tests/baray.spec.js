@@ -75,13 +75,8 @@ describe("Baray tests", () => {
                 json: true,
                 path: path
             })
-            let logFiles = fs.readdirSync(path)
-            if (logFiles.length > 0) {
-                for (logFile of logFiles) {
-                    if (fs.statSync(`${path}/${logFile}`).isFile())
-                        fs.unlinkSync(`${path}/${logFile}`)
-                }
-            }
+            utils._dirCleanup(path)
+
             logger.info(message)
             logger.warn(message)
             logger.error(message)
@@ -103,7 +98,7 @@ describe("Baray tests", () => {
             expect(warnFileContent).to.haveOwnProperty("appName").to.equal("test")
             expect(warnFileContent).to.haveOwnProperty("type").to.equal(types.WAR)
         })
-        it.only("should generate proper error log object", () => {
+        it("should generate proper error log object", () => {
             errorFileContent = utils._getFileContents(path, types.ERR)
             expect(errorFileContent).to.include("Error")
             expect(errorFileContent).to.include(message)
@@ -113,13 +108,7 @@ describe("Baray tests", () => {
         })
 
         after(() => {
-            let logFiles = fs.readdirSync(path)
-            if (logFiles.length > 0) {
-                for (logFile of logFiles) {
-                    if (fs.statSync(`${path}/${logFile}`).isFile())
-                        fs.unlinkSync(`${path}/${logFile}`)
-                }
-            }
+            utils._dirCleanup(path)
         })
     })
 
