@@ -37,7 +37,14 @@ const logger = new Baray()
 ```javascript 
 logger.log("message")
 logger.info("message")
-logger.warning("message")
+logger.warn("message")
 logger.error("message")
 ```
 
+_OR like this...(with JSON content)_
+```javascript
+logger.log({tag:"sometag", message:"message content"})
+logger.info({tag:"sometag", message:"message content"})
+logger.warn({tag:"sometag", message:"message content"})
+logger.error({tag:"sometag", message:"message content"})
+```
