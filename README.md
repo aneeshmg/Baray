@@ -26,10 +26,10 @@ const logger = new Baray({
   appName: "NoName",
   console: true, 
   json: true,
-  color: "white"
+  color: false,
   path: `${__dirname}/logs`
 })
-// Available colors - ["black, "white", "red", "green", "blue", "cyan", "magenta", "yellow"]
+// if 'color' is set to true (& 'console' is set to true), info, warn & error logs will appear in cyan, yellow & red colors respectively on the console
 ```
 ##### _OR_
 ```javascript
