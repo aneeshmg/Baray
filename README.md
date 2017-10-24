@@ -1,4 +1,5 @@
 # baray
+_Why is it called 'baray'? cause 'baray' is a verb in kannada (my native language) which means 'to write'_
 
 [![npm](https://img.shields.io/npm/v/baray.svg)](https://www.npmjs.com/package/baray)
 [![Travis](https://img.shields.io/travis/aneeshmg/Baray.svg)](https://travis-ci.org/aneeshmg/Baray)
