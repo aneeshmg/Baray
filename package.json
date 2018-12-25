@@ -8,14 +8,14 @@
     "test": "node_modules/.bin/mocha tests/**/*.js --exit",
     "coverage": "node_modules/.bin/nyc npm test && node_modules/.bin/nyc --clean -s check-coverage"
   },
-  "author": "Aneesh MG",
+  "author": "Aneesh M Gangadhar",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^4.1.2",
-    "codecov": "^2.3.1",
-    "mocha": "^4.0.1",
-    "nyc": "^11.3.0",
-    "winston": "^2.4.0"
+    "chai": "^4.2.0",
+    "codecov": "^3.1.0",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
+    "winston": "^3.1.0"
   },
   "directories": {
     "lib": "lib",
